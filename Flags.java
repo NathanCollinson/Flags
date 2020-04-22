@@ -100,10 +100,8 @@ public class Flags {
         //send parameters to respective flag method
         
         if(flag.compareTo("horizontal")==0){
-            UI.print("HELLO");
             drawHorizontalFlag(colour1, colour2, colour3);
         } else {
-            UI.print("Goodbye");
             drawVerticalFlag(colour1, colour2, colour3);
         }
     }
@@ -137,8 +135,22 @@ public class Flags {
      * @param: colour 1, 2, 3 Each colour of the stripe.
      */
     private void drawVerticalFlag(String colour1, String colour2, String colour3) {
-        UI.print("HELLO THERE");
-
+        //width of each stripe
+        double stripeWidth = 150.0;
+        
+        //drawing the border of the flag
+        UI.setColor(Color.black);
+        UI.drawRect(LEFT, TOP, WIDTH, HEIGHT);
+        
+        //drawing the first colour
+        UI.setColor(colorList.get(getColor(colour1)));
+        UI.fillRect(LEFT, TOP, stripeWidth, HEIGHT);        
+        //drawing the second colour
+        UI.setColor(colorList.get(getColor(colour2)));
+        UI.fillRect(LEFT+stripeWidth, TOP, stripeWidth, HEIGHT);        
+        //drawing the third colour
+        UI.setColor(colorList.get(getColor(colour3)));
+        UI.fillRect(LEFT+(stripeWidth*2), TOP, stripeWidth, HEIGHT);        
     }
 
 
