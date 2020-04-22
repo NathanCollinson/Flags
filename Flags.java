@@ -7,7 +7,7 @@ import java.awt.Color;
  * Write a description of class Flags here.
  *
  * @author: Nathan Collinson
- * @version: 2
+ * @version: 3
  */
 public class Flags {
     
@@ -20,6 +20,13 @@ public class Flags {
     private int whiteIndex;
     private int blackIndex;
     private int orangeIndex;
+    private int yellowIndex;
+    
+    //Flag dimension CONSTANTs
+    final double LEFT = 50.0;
+    final double TOP = 50.0;
+    final double WIDTH = 450.0;
+    final double HEIGHT = 300.0;
     
     /**
      * Constructor for objects of class Flags.
@@ -39,6 +46,7 @@ public class Flags {
         whiteIndex = 3;
         blackIndex = 4;
         orangeIndex = 5;
+        yellowIndex = 6;
         
         //Adding each colour to the array
         colorList.add(redIndex, Color.red);
@@ -47,7 +55,7 @@ public class Flags {
         colorList.add(whiteIndex, Color.white);
         colorList.add(blackIndex, Color.black);
         colorList.add(orangeIndex, Color.orange);
-        
+        colorList.add(yellowIndex, Color.yellow);
     }
     
     
@@ -66,6 +74,8 @@ public class Flags {
             aColor = blackIndex;
         } else if(colour.compareTo("orange")==0){
             aColor = orangeIndex;
+        } else if(colour.compareTo("yellow")==0){
+            aColor = yellowIndex;
         } else {
             aColor = whiteIndex;
         }
@@ -103,13 +113,23 @@ public class Flags {
      */
     private void drawHorizontalFlag(String colour1, String colour2, String colour3) {
         //Each colour is a parameter sent by the user
-        UI.print(colour1);
-        //UI.setColor(getColor());
+        
+        //the height of each stripe is 100pixels
+        double stripeHeight = 100.00;
+        //drawing the border of the flag
+        UI.setColor(Color.black);
+        UI.drawRect(LEFT, TOP, WIDTH, HEIGHT);
+        
+        //drawing the first colour
         UI.setColor(colorList.get(getColor(colour1)));
-        UI.setLineWidth(1);
-        UI.drawLine(200, 200, 400, 400);
-
-        //using the colours as variables colour each stripe horizontally
+        UI.fillRect(LEFT, TOP, WIDTH, stripeHeight);
+        //drawing the second colour
+        UI.setColor(colorList.get(getColor(colour2)));
+        UI.fillRect(LEFT, TOP+stripeHeight, WIDTH, stripeHeight);        
+        //drawing the third colour
+        UI.setColor(colorList.get(getColor(colour3)));
+        UI.fillRect(LEFT, TOP+(stripeHeight*2), WIDTH, stripeHeight);        
+        
     }
 
     /**
